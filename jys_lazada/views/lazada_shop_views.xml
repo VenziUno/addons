@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_lazada_shop_tree" model="ir.ui.view">
+            <field name="name">lazada.shop.tree</field>
+            <field name="model">lazada.shop</field>
+            <field name="arch" type="xml">
+                <tree string="Lazada Shop">
+                    <header>
+                        <button name="auth_shop_lazada" string="Authorize Lazada Shop" class="btn-primary ms-1" type="object" display="always"/>
+                    </header>
+                    <field name="name" required="1"/>
+                    <field name="region_id" required="1" options="{'no_open': 1, 'no_create': 1}"/>
+                    <!-- <field name="oauth_code" required="0"/>
+                    <field name="access_token" readonly="1" force_save="1"/> -->
+                    <field name="last_token_datetime" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_lazada_shop_form" model="ir.ui.view">
+            <field name="name">lazada.shop.form</field>
+            <field name="model">lazada.shop</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Shop">
+                    <header>
+                        <button name="generate_new_token" type="object" string="Generate New Token" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="warehouse_id" required="1" widget="selection" options="{'no_open': 1, 'no_create': 1}"/>
+                                <field name="region_id" required="1" widget="selection" options="{'no_open': 1, 'no_create': 1}"/>
+                                <field name="oauth_code" required="0"/>
+                                <field name="access_token" readonly="0" force_save="1"/>
+                                <field name="refresh_token" readonly="0" force_save="1"/>
+                                <field name="last_token_datetime" readonly="0"/>
+                            </group>
+                            <group>
+                                <field name="lazada_commission" required="0"/>
+                                <field name="start_date"/>
+                                <field name="payment_journal_id"/>
+                                <field name="payment_method_id"/>
+                                <field name="service_account_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jys_lazada_shop" model="ir.actions.act_window">
+            <field name="name">Shops</field>
+            <field name="res_model">lazada.shop</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+    </data>
+</odoo>

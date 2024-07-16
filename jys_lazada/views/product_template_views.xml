@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_lazada_product_template_form" model="ir.ui.view">
+            <field name="name">lazada.product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <div>
+                        <field name="is_lazada"/>
+                        <label for="is_lazada"/>
+                    </div>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_lazada_product_template_only_form" model="ir.ui.view">
+            <field name="name">lazada.product.template.only.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="%(action_lazada_add_product)d" type="action" string="Add Product to Lazada" invisible="is_lazada == False"/>
+                    <button name="%(action_lazada_update_product)d" type="action" string="Update Product to Lazada" invisible="is_lazada == False"/>
+                    <div style="clear: both;"/>
+                </xpath>
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page string="Lazada" invisible="is_lazada == False">
+                        <separator string="Seller SKU"/>
+                        <group>
+                            <!-- <field name="lazada_seller_sku"/> -->
+                            <field name="default_code" string="SKU"/>
+                        </group>
+                        <separator string="Item ID"/>
+                        <field name="lazada_product_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="shop_id"/>
+                                <field name="item_id"/>
+                            </tree>
+                        </field>
+                        <separator string="Image"/>
+                        <button name="action_open_lz_delete_confirmation_wizard" type="object" string="Delete All Image" class="oe_highlight lazada-button-delete" invisible="not lazada_product_image_ids"/>
+                        <field name="lazada_product_image_ids" widget="kanban" string="Images">
+                            <kanban create="0">
+                                <field name="image"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="o_kanban_image" style="width: 300px; height: 300px; border: 0px solid white; display: flex; align-items: center; justify-content: center;">
+                                            <img alt="Image" t-att-src="kanban_image('lazada.product.image', 'image', record.id.raw_value)" style="width: 100%; height: 100%"/>
+                                        </div>
+                                        <button name="unlink" type="object" class="fa fa-trash"/>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <form string="Upload Image">
+                                <sheet>
+                                    <group>
+                                        <field name="image" widget="image"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                        <field name="upload_product_lz_image_ids" widget="many2many_binary" string="Images" nolabel="1" context="{'upload_lazada_image': True}"/>
+
+                        <separator string="Category &amp; Brand"/>
+                        <group>
+                            <field name="lazada_category_id"/>
+                            <field name="lazada_brand_id"/>
+                        </group>
+
+                        <separator string="Package"/>
+                        <group>
+                            <group>
+                                <field name="lz_package_height"/>
+                                <field name="lz_package_width"/>
+                            </group>
+                            <group>
+                                <field name="lz_package_length"/>
+                                <field name="lz_package_weight"/>
+                            </group>
+                            <group>
+                                <field name="lz_package_content"/>
+                            </group>
+                        </group>
+                        <p style="color: red"><b>Note:</b> Height, Width, Length (cm) and Weight (kg)</p>
+                        <separator string="Other"/>
+                        <group>
+                            <group>
+                                <field name="is_battery"/>
+                                <field name="is_flammable"/>
+                            </group>
+                            <group>
+                                <field name="is_liquid"/>
+                                <field name="is_none"/>
+                            </group>
+                        </group>
+
+                        <separator string="Description"/>
+                        <field name="lazada_desc" widget="html"/>
+
+
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="jys_product_template_kanban_inherit" model="ir.ui.view">
+            <field name="name">jys.lazada.product.template.kanban</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_properties']" position="after">
+                    <field name="is_lazada" invisible="1"/> 
+                    <div style="display: inline-block; float:right">
+                        <img src="/jys_lazada/static/img/lazada_logo.png" alt="Lazada" style="width: 24px; height: 24px; display:flex; flex-direction: row-reverse" invisible="is_lazada == False"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_lazada_product_product_form" model="ir.ui.view">
+            <field name="name">lazada.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <div>
+                        <field name="is_sync_lazada"/>
+                        <label for="is_sync_lazada"/>
+                    </div>
+                </xpath>
+                <xpath expr="//page[@name='sales']" position="after">
+                    <page name="lazada_variations" string="Lazada" invisible="is_lazada == False">
+                        <separator string="Seller SKU"/>
+                        <group col="4" colspan="2">
+                            <field name="lazada_seller_sku" colspan="4"/>
+                        </group>
+
+                        <separator string="Variant Id"/>
+                        <field name="lazada_product_variant_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="shop_id"/>
+                                <field name="variation_id"/>
+                                <field name="seller_sku"/>
+                                <field name="shop_sku"/>
+                                <!-- <field name="price"/> -->
+                            </tree>
+                        </field>
+
+                        <separator string="Image"/>
+                        <button name="action_open_lz_delete_confirmation_wizard" type="object" string="Delete All Image" class="oe_highlight lazada-button-delete" invisible="not lazada_product_var_image_ids"/>
+
+                        <field name="lazada_product_var_image_ids" widget="kanban" string="Images">
+                            <kanban create="0">
+                                <field name="image"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="o_kanban_image" style="width: 300px; height: 300px; border: 0px solid white; display: flex; align-items: center; justify-content: center;">
+                                            <img alt="Image" t-att-src="kanban_image('lazada.product.image.variant', 'image', record.id.raw_value)" style="width: 100%; height: 100%"/>
+                                        </div>
+                                        <button name="unlink" type="object" class="fa fa-trash"/>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <form string="Upload Image">
+                                <sheet>
+                                    <group>
+                                        <field name="image" widget="image"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                        <field name="upload_product_var_lz_image_ids" widget="many2many_binary" string="Images" nolabel="1" context="{'upload_lazada_image': True}"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

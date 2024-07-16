@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_lazada_finance_tree" model="ir.ui.view">
+            <field name="name">lazada.finance.tree</field>
+            <field name="model">lazada.finance</field>
+            <field name="arch" type="xml">
+                <tree string="Lazada Finances">
+                    <field name="name"/>
+                    <field name="shop_id"/>
+                    <field name="transaction_date"/>
+                    <field name="transaction_number"/>
+                    <field name="description"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                    <field name="is_updated"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_lazada_finance_form" model="ir.ui.view">
+            <field name="name">lazada.finance.form</field>
+            <field name="model">lazada.finance</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Finances">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="shop_id"/>
+                            <field name="transaction_date"/>
+                            <field name="transaction_number"/>
+                            <field name="description"/>
+                            <field name="amount"/>
+                            <field name="state"/>
+                            <field name="is_updated"/>
+                        </group>
+                        <group>
+                            <field name="payment_ref"/>
+                            <field name="transaction_type"/>
+                            <field name="wht_amount"/>
+                            <field name="vat_amount"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_lazada_finance_search" model="ir.ui.view">
+            <field name="name">lazada.finance.search</field>
+            <field name="model">lazada.finance</field>
+            <field name="arch" type="xml">
+                <search string="Lazada Finances">
+                    <field name="name"/>
+                    <field name="transaction_number"/>
+                    <field name="description"/>
+                    <field name="state"/>
+                    <field name="shop_id"/>
+                    <separator/>
+                    <filter string="Updated" name="updated" domain="[('is_updated', '=', True)]"/>
+                    <filter string="Not Updated" name="not_updated" domain="[('is_updated', '=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_name" string="Order Number" domain="[]" context="{'group_by': 'name'}"/>
+                        <filter name="group_status" string="Status" domain="[]" context="{'group_by': 'state'}"/>
+                        <filter name="group_shop" string="Shop" domain="[]" context="{'group_by': 'shop_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_lazada_finance" model="ir.actions.act_window">
+            <field name="name">Finances</field>
+            <field name="res_model">lazada.finance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_not_updated': 1}</field>
+        </record>
+
+    </data>
+</odoo>

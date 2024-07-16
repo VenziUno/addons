@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="main_menu_jys_lazada"
+        name="Lazada"
+        web_icon="jys_lazada,static/description/icon.png"
+        groups="jys_lazada.group_jys_lazada_access"
+        sequence="400">
+
+        <menuitem id="datas_menu_jys_lazada"
+            name="Data"
+            sequence="10">
+
+            <menuitem id="menu_jys_lazada_category"
+            name="Category"
+            action="action_lazada_category"
+            sequence="10"/>
+
+            <menuitem id="menu_jys_lazada_attribute"
+            name="Attributes"
+            action="action_lazada_attribute"
+            sequence="20"/>
+
+            <menuitem id="menu_jys_lazada_brand"
+            name="Brands"
+            action="action_lazada_brand"
+            sequence="30"/>
+
+            <menuitem id="menu_jys_lazada_product_image"
+            name="Images"
+            action="action_jys_lazada_product_image"
+            sequence="40"/>
+
+            <menuitem id="menu_jys_lazada_warehouse"
+            name="Warehouse"
+            action="action_jys_lazada_warehouse"
+            sequence="50"/>
+
+            <menuitem id="menu_jys_lazada_delivery_carrier"
+            name="Logistics"
+            action="action_jys_lazada_delivery_carrier"
+            sequence="60"/>
+
+            <!-- <menuitem id="menu_lazada_token"
+            name="Token"
+            action="action_lazada_token"
+            sequence="70"/> -->
+
+            <menuitem id="menu_jys_lazada_api_log"
+            name="History API"
+            action="action_jys_lazada_history_api"
+            sequence="80"/>
+
+        </menuitem>
+
+        <menuitem id="data_menu_jys_lazada"
+            name="Orders"
+            sequence="20">
+
+            <!-- <menuitem id="item_menu_jys_lazada"
+            name="Items"
+            action="action_jys_lazada_item"
+            sequence="10"/> -->
+
+            <menuitem id="order_menu_jys_lazada"
+            name="Orders"
+            action="action_jys_lazada_order"
+            sequence="20"/>
+
+        </menuitem>
+
+        <menuitem id="sync_menu_jys_lazada"
+            name="Sync"
+            sequence="30">
+
+            <menuitem id="menu_jys_lazada_get_order"
+            name="Get Orders"
+            action="action_lazada_get_order"
+            sequence="10"/>
+
+            <!-- <menuitem id="menu_jys_lazada_get_item"
+            name="Get Items"
+            action="action_jys_lazada_get_item"
+            sequence="20"/> -->
+
+            <menuitem id="menu_jys_lazada_get_category"
+            name="Get Categories"
+            action="action_jys_lazada_get_category"
+            sequence="30"/>
+
+            <menuitem id="menu_jys_lazada_get_attribute"
+            name="Get Attributes"
+            action="action_jys_lazada_get_attribute"
+            sequence="40"/>
+
+            <menuitem id="menu_jys_lazada_get_brand"
+            name="Get Brands"
+            action="action_jys_lazada_get_brand"
+            sequence="50"/>
+
+            <menuitem id="menu_jys_lazada_get_product"
+            name="Get Products"
+            action="action_jys_lazada_get_product"
+            sequence="60"/>
+
+            <menuitem id="menu_jys_lazada_get_warehouse"
+            name="Get Warehouse"
+            action="action_jys_lazada_get_warehouse"
+            sequence="70"/>
+            
+            <menuitem id="menu_jys_lazada_get_logistic"
+            name="Get Logistic"
+            action="action_jys_lazada_get_logistic"
+            sequence="80"/>
+        </menuitem>
+
+        <menuitem id="shop_menu_jys_lazada"
+            name="Shop"
+            action="action_jys_lazada_shop"
+            sequence="40">
+        </menuitem>
+    </menuitem>
+
+</odoo>

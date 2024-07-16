@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_lazada_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Lazada" invisible="is_lazada_order == False">
+                        <group col="4" colspan="2">
+                            <field name="lazada_shop_id" readonly="1"/>
+                            <field name="is_lazada_order" readonly="1"/>
+                            <field name="is_lazada_return" readonly="1"/>
+                            <field name="lazada_ordersn" readonly="1"/>
+                            <field name="lazada_tracking_no" readonly="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_lazada_sales_order_filter_inherit" model="ir.ui.view">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="before">
+                    <filter string="Lazada" name="lazada" domain="[('lazada_shop_id','!=',False)]" help="Order from Lazada"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

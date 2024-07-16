@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_lazada_get_order_form" model="ir.ui.view">
+            <field name="name">Lazada Get Orders</field>
+            <field name="model">lazada.get.order</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Get Orders">
+                    <p>
+                        Integration Lazada to System.
+                    </p>
+                    <div isible="is_synced == True" style="margin-bottom:15px;">
+                        Order hasn't been synchronized before, please enter a start date
+                    </div>
+                    <group>
+                        <field name="is_synced" invisible="1"/>
+                        <field name="shop_id" required="1" widget="selection"/>
+                        <field name="is_continue" invisible="is_synced == False"/>
+                        <field name="start_date" required="is_continue == False" invisible="is_synced == True and is_continue == True"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lazada_get_order" model="ir.actions.act_window">
+            <field name="name">Get Orders</field>
+            <field name="res_model">lazada.get.order</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_lazada_get_order_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

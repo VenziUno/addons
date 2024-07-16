@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_lazada_update_product_form" model="ir.ui.view">
+            <field name="name">Lazada Update Products</field>
+            <field name="model">lazada.update.product</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Update Products">
+                    <p>
+                        Update Product to Lazada.
+                    </p>
+                    <h3>
+                        <separator string="Shop"/>
+                    </h3>
+                    <field name="shop_ids" nolabel="1" required="1" widget="many2many_tags"/>
+                    <group>
+                        <group>
+                            <field name="is_stock" invisible="is_remove ==  True"/>
+                            <field name="is_remove"/>
+                            <field name="is_non_active" invisible="is_remove ==  True"/>
+                        </group>
+                        <group>
+                            <field name="is_image" invisible="is_remove ==  True"/>
+                            <field name="is_price" invisible="is_remove ==  True"/>
+                        </group>
+                    </group>
+                    <p style="color: red" invisible="is_remove ==  False"><b>Warning:</b> Anda memilih menghapus produk ini?. Jika iya, klik Confirm.</p>
+                    <footer>
+                        <button name="update_product" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lazada_update_product" model="ir.actions.act_window">
+            <field name="name">Update to Lazada</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lazada.update.product</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="product.model_product_template"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+    </data>
+</odoo>

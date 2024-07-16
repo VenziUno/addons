@@ -1,0 +1,9 @@
+/* File: custom_styles.css */
+button.tiktok-button-delete {
+    background-color: red !important;
+    color: white !important;
+}
+
+button.tiktok-button-upload {
+    margin-right: 20px;
+}

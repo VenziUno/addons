@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1"> 
+
+        <record id="lazada_region_id" model="lazada.region">
+            <field name="name">Indonesia</field>
+            <field name="url">https://api.lazada.co.id/rest</field>
+            <field name="timezone">7</field>
+        </record>
+
+        <record id="lazada_region_my" model="lazada.region">
+            <field name="name">Malaysia</field>
+            <field name="url">https://api.lazada.com.my/rest</field>
+            <field name="timezone">8</field>
+        </record>
+
+        <record id="lazada_region_ph" model="lazada.region">
+            <field name="name">Philippines</field>
+            <field name="url">https://api.lazada.com.ph/rest</field>
+            <field name="timezone">8</field>
+        </record>
+
+        <record id="lazada_region_sg" model="lazada.region">
+            <field name="name">Singapore</field>
+            <field name="url">https://api.lazada.sg/rest</field>
+            <field name="timezone">8</field>
+        </record>
+
+        <record id="lazada_region_th" model="lazada.region">
+            <field name="name">Thailand</field>
+            <field name="url">https://api.lazada.co.th/rest</field>
+            <field name="timezone">7</field>
+        </record>
+
+        <record id="lazada_region_vn" model="lazada.region">
+            <field name="name">Vietnam</field>
+            <field name="url">https://api.lazada.vn/rest</field>
+            <field name="timezone">7</field>
+        </record>
+
+    </data>
+</odoo>

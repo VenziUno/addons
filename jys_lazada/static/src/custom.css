@@ -1,0 +1,9 @@
+/* File: custom_styles.css */
+button.lazada-button-delete {
+    background-color: red !important;
+    color: white !important;
+}
+
+button.lazada-button-upload {
+    margin-right: 20px;
+}

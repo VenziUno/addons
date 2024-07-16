@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_lazada_add_product_form" model="ir.ui.view">
+            <field name="name">Lazada Add Products</field>
+            <field name="model">lazada.add.product</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Add Products">
+                    <p>
+                        Add Product to Lazada.
+                    </p>
+                    <h3>
+                        <separator string="Shop"/>
+                    </h3>
+                    <field name="shop_id" nolabel="1" required="1"/>
+                    
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lazada_add_product" model="ir.actions.act_window">
+            <field name="name">Add to Lazada</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lazada.add.product</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="product.model_product_template"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+    </data>
+</odoo>

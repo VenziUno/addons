@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tiktok_warehouse_tree" model="ir.ui.view">
+            <field name="name">tiktok.warehouse.tree</field>
+            <field name="model">tiktok.warehouse</field>
+            <field name="arch" type="xml">
+                <tree string="Tiktok Warehouses" create="0">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tiktok_warehouse_form" model="ir.ui.view">
+            <field name="name">tiktok.warehouse.form</field>
+            <field name="model">tiktok.warehouse</field>
+            <field name="arch" type="xml">
+                <form string="Tiktok Warehouses" create="0" edit="0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="warehouse_id"/>
+                            <field name="address"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jys_tiktok_warehouse" model="ir.actions.act_window">
+            <field name="name">Warehouses</field>
+            <field name="res_model">tiktok.warehouse</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+        
+    </data>
+</odoo>

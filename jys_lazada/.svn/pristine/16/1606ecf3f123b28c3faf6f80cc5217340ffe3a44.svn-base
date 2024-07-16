@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_lazada_get_category_form" model="ir.ui.view">
+            <field name="name">Lazada Get Category</field>
+            <field name="model">lazada.get.category</field>
+            <field name="arch" type="xml">
+                <form string="lazada Get Category">
+                    <p>
+                        Integration Lazada to System.
+                    </p>
+                    <separator string="Shops"/>
+                    <field name="shop_id" nolabel="1" required="1"/>
+
+                    <footer>
+                        <button name="create_category" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jys_lazada_get_category" model="ir.actions.act_window">
+            <field name="name">Get Category</field>
+            <field name="res_model">lazada.get.category</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_lazada_get_category_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

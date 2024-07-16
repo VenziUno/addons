@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_lazada_order_tree" model="ir.ui.view">
+            <field name="name">lazada.order.tree</field>
+            <field name="model">lazada.order</field>
+            <field name="arch" type="xml">
+                <tree string="Lazada Orders">
+                    <field name="name"/>
+                    <field name="shop_id"/>
+                    <field name="statuses"/>
+                    <!-- <field name="created_date"/>
+                    <field name="updated_date"/>
+                    <field name="is_updated"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_lazada_order_form" model="ir.ui.view">
+            <field name="name">lazada.order.form</field>
+            <field name="model">lazada.order</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Orders">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="shop_id" required="1"/>
+                            <field name="statuses" required="1"/>
+                            <field name="updated_date" readonly="1"/>
+                            <field name="is_updated"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="partner_invoice_id" readonly="1"/>
+                            <field name="partner_shipping_id" readonly="1"/>
+                            <field name="payment_method" readonly="1"/>
+                            <field name="price" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_lazada_order_search" model="ir.ui.view">
+            <field name="name">lazada.order.search</field>
+            <field name="model">lazada.order</field>
+            <field name="arch" type="xml">
+                <search string="Lazada Orders">
+                    <field name="name"/>
+                    <field name="statuses"/>
+                    <field name="shop_id"/>
+                    <separator/>
+                    <filter string="Updated" name="updated" domain="[('is_updated', '=', True)]"/>
+                    <filter string="Not Updated" name="not_updated" domain="[('is_updated', '=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_name" string="Order Number" domain="[]" context="{'group_by': 'name'}"/>
+                        <filter name="group_status" string="Statuses" domain="[]" context="{'group_by': 'statuses'}"/>
+                        <filter name="group_shop" string="Shop" domain="[]" context="{'group_by': 'shop_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_jys_lazada_order" model="ir.actions.act_window">
+            <field name="name">Orders</field>
+            <field name="res_model">lazada.order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_not_updated': 1}</field>
+        </record>
+
+    </data>
+</odoo>

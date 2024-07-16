@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="lazada_shipping_label_view" model="ir.ui.view">
+            <field name="name">Lazada Shipping Label</field>
+            <field name="model">lazada.shipping.label</field>
+            <field name="arch" type="xml">
+                <form string="Lazada Shipping Label">
+                    <footer>
+                        <button name="print_label_lz" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lazada_shipping_label_view" model="ir.actions.act_window">
+            <field name="name">Lazada Shipping Label</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lazada.shipping.label</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <record id="lazada_shipping_label_pdf_view" model="ir.ui.view">
+            <field name="name">lazada.shipping.label.pdf</field>
+            <field name="model">lazada.shipping.label.pdf</field>
+            <field name="arch" type="xml">
+                <form string="Download File">
+                    <field name="name" invisible="1"/>
+                    <br/>
+                    <h4>Click On Link To Download File:&#160;
+                        <field name="pdf_file" filename="name" nolabel="1"/>
+                    </h4>
+                    <footer>
+                        <button name="action_back" string="Back" type="object" class="btn-primary"/>
+                        or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+</odoo>
