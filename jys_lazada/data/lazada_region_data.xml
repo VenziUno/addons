@@ -9,7 +9,7 @@
         </record>
 
         <record id="lazada_region_my" model="lazada.region">
-            <field name="name">Malaysia</field>
+            <field name="name">Malaysiaaaaaa</field>
             <field name="url">https://api.lazada.com.my/rest</field>
             <field name="timezone">8</field>
         </record>
